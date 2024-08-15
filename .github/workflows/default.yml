@@ -26,5 +26,6 @@ jobs:
           pip install -r requirements.txt
       - name: Run test cases
         run: |
-          pytest
+          pytest -v -s
+
       - run: echo "🍏 This job's status is ${{ job.status }}."
