@@ -1,8 +1,40 @@
-# Environments
-.env
-.venv
-env/
+# Entorno virtual
 venv/
 ENV/
-env.bak/
-venv.bak/
+env/
+.venv/
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de configuración de IDEs/Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+
+# Logs
+*.log
+
+# Archivos de cobertura de pruebas
+.coverage
+htmlcov/
+coverage.xml
+
+# Archivos temporales
+*.tmp
+*.temp
+*.bak
+*.old
+
+# Directorios de pytest
+.cache/
+.pytest_cache/
+
+# Paquetes creados
+dist/
+build/
+*.egg-info/
