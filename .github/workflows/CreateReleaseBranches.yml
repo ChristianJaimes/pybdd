@@ -1,0 +1,33 @@
+name: Create Release Branches
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version number (e.g., v2.17.0)"
+        required: true
+
+jobs:
+  create_branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Necesario para crear branches correctamente
+
+      - name: Set up Git user
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Create Release Branches
+        run: |
+          VERSION=${{ github.event.inputs.version }}
+          BASE_BRANCH="Develop"
+          
+          for SUFFIX in NTF CDS ECO HER PVT BuildSteps; do
+            BRANCH_NAME="release/${SUFFIX}_candidate_${VERSION}"
+            git checkout -b "$BRANCH_NAME" origin/$BASE_BRANCH
+            git push origin "$BRANCH_NAME"
+            echo "✅ Created branch: $BRANCH_NAME"
+          done
